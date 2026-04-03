@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viability Ventures — Practical AI Tools for Real Results</title>
+  <meta name="description" content="Digital products and automation services that help you work smarter, not harder." />
+  <meta property="og:title" content="Viability Ventures" />
+  <meta property="og:description" content="Practical AI tools and automation services for entrepreneurs and creators." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-primary:   #0A0F1C;
+      --bg-secondary: #141B2D;
+      --bg-card:      #1A2235;
+      --accent:       #00D4AA;
+      --accent-dim:   #00b08d;
+      --purple:       #7B61FF;
+      --text-primary: #FFFFFF;
+      --text-muted:   #A0AEC0;
+      --text-dim:     #64748B;
+      --border:       #1E2A3E;
+      --radius:       10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(10, 15, 28, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0A0F1C;
+    }
+    .btn-primary:hover { background: var(--accent-dim); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .btn-fiverr {
+      background: #1DBF73;
+      color: #fff;
+    }
+    .btn-fiverr:hover { background: #17a862; transform: translateY(-1px); }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 48px; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 64px;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,212,170,0.12) 0%, transparent 60%),
+        var(--bg-primary);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(0,212,170,0.1);
+      border: 1px solid rgba(0,212,170,0.25);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      max-width: 800px;
+    }
+    .hero-title .highlight { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 72px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* ── WHAT WE BUILD ── */
+    #about { background: var(--bg-secondary); }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .pillar-card:hover { border-color: rgba(0,212,170,0.3); }
+
+    .pillar-icon {
+      width: 40px; height: 40px;
+      background: rgba(0,212,170,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+
+    .pillar-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pillar-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── PRODUCTS ── */
+    #products { background: var(--bg-primary); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .product-card:hover { border-color: rgba(0,212,170,0.35); transform: translateY(-2px); }
+
+    .product-card.featured {
+      border-color: rgba(0,212,170,0.4);
+      background: linear-gradient(135deg, #1A2235 0%, #1a2a38 100%);
+      position: relative;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -1px; right: 20px;
+      background: var(--accent);
+      color: #0A0F1C;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 0 0 6px 6px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .product-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .product-price .orig {
+      font-size: 1rem;
+      color: var(--text-dim);
+      text-decoration: line-through;
+      margin-left: 8px;
+    }
+
+    .product-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 24px;
+    }
+
+    .stores-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .stores-label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-right: 4px;
+    }
+    .store-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .store-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── SERVICES ── */
+    #services { background: var(--bg-secondary); }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .service-icon-wrap {
+      width: 56px; height: 56px;
+      background: rgba(0,212,170,0.1);
+      border: 1px solid rgba(0,212,170,0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .service-content { flex: 1; }
+    .service-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 10px; }
+    .service-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+
+    .service-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .tag {
+      padding: 4px 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ── CONNECT ── */
+    #connect { background: var(--bg-primary); }
+
+    .socials-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .social-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .social-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .social-platform {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+    }
+
+    .social-handle {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .social-arrow {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-top: auto;
+    }
+
+    .contact-row {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .contact-label { font-size: 0.9rem; color: var(--text-muted); }
+    .contact-email { color: var(--accent); font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 40px 48px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text-muted); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 48px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+
+      section { padding: 72px 24px; }
+      footer { padding: 32px 24px; }
+      .divider { margin: 0 24px; }
+
+      .pillars { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .socials-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .hero-title { font-size: 2.25rem; }
+      .hero-stats { gap: 28px; flex-wrap: wrap; }
+
+      .service-card { flex-direction: column; padding: 28px; }
+
+      .contact-row { flex-direction: column; align-items: flex-start; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .socials-grid { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Viability<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+  <a href="https://payhip.com/b/B5Kth" class="btn btn-primary" target="_blank" rel="noopener">Shop Products</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      AI Tools &amp; Automation
+    </div>
+    <h1 class="hero-title">
+      Practical AI Tools<br />for <span class="highlight">Real Results</span>
+    </h1>
+    <p class="hero-sub">
+      Digital products and automation services that help entrepreneurs and creators work smarter, not harder.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://payhip.com/b/B5Kth" class="btn btn-primary" target="_blank" rel="noopener">Explore Products</a>
+      <a href="#services" class="btn btn-outline">View Services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Digital Products</div>
+      </div>
+      <div>
+        <div class="stat-num">$9</div>
+        <div class="stat-label">Starting Price</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Stores</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Instant Delivery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHAT WE BUILD -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Built for people who want results</h2>
+    <p class="section-sub">We focus on actionable AI applications, automation systems, and frameworks that deliver real value.</p>
+    <div class="pillars">
+      <div class="pillar-card">
+        <div class="pillar-icon">⚡</div>
+        <div class="pillar-title">Digital Products</div>
+        <div class="pillar-desc">Ready-to-use templates, prompt packs, and guides you can put to work immediately.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">⚙️</div>
+        <div class="pillar-title">Automation Services</div>
+        <div class="pillar-desc">Custom Python scripts, workflow automation, and AI tool integration built for your needs.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📖</div>
+        <div class="pillar-title">Resources</div>
+        <div class="pillar-desc">In-depth articles, tutorials, and curated tool recommendations on Medium and social.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="container">
+    <div class="section-label">Products</div>
+    <h2 class="section-title">Tools that pay for themselves</h2>
+    <p class="section-sub">Tested, practical products designed to save you time and help you earn more.</p>
+
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-title">AI Prompt Pack</div>
+        <div class="product-price">$9</div>
+        <div class="product-desc">50+ tested prompts for content creation, coding, business writing, and productivity. Works with ChatGPT, Claude, and any major AI tool.</div>
+        <a href="https://payhip.com/b/B5Kth" class="btn btn-primary" target="_blank" rel="noopener">Get It — $9</a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-title">Notion OS Template</div>
+        <div class="product-price">$15</div>
+        <div class="product-desc">A complete productivity operating system for Notion. Manage projects, tasks, goals, and knowledge in one clean workspace.</div>
+        <a href="https://payhip.com/b/B5Kth" class="btn btn-primary" target="_blank" rel="noopener">Get It — $15</a>
+      </div>
+
+      <div class="product-card featured">
+        <div class="featured-badge">Best Value</div>
+        <div class="product-title">Complete Bundle</div>
+        <div class="product-price">$24 <span class="orig">$33</span></div>
+        <div class="product-desc">Everything — AI Prompt Pack, Notion OS Template, and the AI Income Guide. Save 30% and get the full toolkit.</div>
+        <a href="https://payhip.com/b/B5Kth" class="btn btn-primary" target="_blank" rel="noopener">Get Bundle — $24</a>
+      </div>
+
+    </div>
+
+    <div class="stores-row">
+      <span class="stores-label">Also available on</span>
+      <a href="https://payhip.com/b/B5Kth" class="store-btn" target="_blank" rel="noopener">Payhip</a>
+      <a href="https://viabilityventures.gumroad.com" class="store-btn" target="_blank" rel="noopener">Gumroad</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">Services</div>
+    <h2 class="section-title">Need something custom?</h2>
+    <p class="section-sub">Beyond the products, we build tailored automation solutions for specific problems.</p>
+
+    <div class="service-card">
+      <div class="service-icon-wrap">🛠</div>
+      <div class="service-content">
+        <div class="service-title">Freelance Automation &amp; Development</div>
+        <div class="service-desc">Custom Python scripts, workflow automation, AI tool integration, and data processing. Every project is scoped clearly with a fixed price — no surprises. Starting at $10 for quick tasks.</div>
+        <div class="service-tags">
+          <span class="tag">Python Automation</span>
+          <span class="tag">AI Integration</span>
+          <span class="tag">Workflow Design</span>
+          <span class="tag">Data Processing</span>
+          <span class="tag">API Scripting</span>
+        </div>
+        <a href="https://www.fiverr.com/viaborja" class="btn btn-fiverr" target="_blank" rel="noopener">Hire on Fiverr</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="container">
+    <div class="section-label">Connect</div>
+    <h2 class="section-title">Follow the journey</h2>
+    <p class="section-sub">AI tips, product updates, and honest takes on building with automation.</p>
+
+    <div class="socials-grid">
+      <a href="https://twitter.com/Isak_vv" class="social-card" target="_blank" rel="noopener">
+        <div class="social-platform">Twitter / X</div>
+        <div class="social-handle">@Isak_vv</div>
+        <div class="social-arrow">↗</div>
+      </a>
+      <a href="https://linkedin.com/in/isaiah-williams-19910a3b9" class="social-card" target="_blank" rel="noopener">
+        <div class="social-platform">LinkedIn</div>
+        <div class="social-handle">Isaiah Williams</div>
+        <div class="social-arrow">↗</div>
+      </a>
+      <a href="https://medium.com/@viabilityventures" class="social-card" target="_blank" rel="noopener">
+        <div class="social-platform">Medium</div>
+        <div class="social-handle">@viabilityventures</div>
+        <div class="social-arrow">↗</div>
+      </a>
+      <a href="https://reddit.com/u/Smooth_Bill_1137" class="social-card" target="_blank" rel="noopener">
+        <div class="social-platform">Reddit</div>
+        <div class="social-handle">u/Smooth_Bill_1137</div>
+        <div class="social-arrow">↗</div>
+      </a>
+    </div>
+
+    <div class="contact-row">
+      <div class="contact-label">Business inquiries &amp; collaboration</div>
+      <a href="mailto:ViabilityVentures@protonmail.com" class="contact-email">ViabilityVentures@protonmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Viability<span>Ventures</span></div>
+    <ul class="footer-links">
+      <li><a href="https://payhip.com/b/B5Kth" target="_blank" rel="noopener">Payhip</a></li>
+      <li><a href="https://viabilityventures.gumroad.com" target="_blank" rel="noopener">Gumroad</a></li>
+      <li><a href="https://www.fiverr.com/viaborja" target="_blank" rel="noopener">Fiverr</a></li>
+      <li><a href="mailto:ViabilityVentures@protonmail.com">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Viability Ventures LLC</div>
+  </div>
+</footer>
+
+</body>
+</html>
